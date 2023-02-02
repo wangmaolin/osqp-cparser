@@ -3,19 +3,19 @@
 ## Overview
 This compiler targets the instruction set of RSQP architecture.
 The source language is a modified version of C. 
-Two new data type "vectorf" and "matrixf" are added to represent "OSQPVectorf" and "OSQPMatrix" in the OSQP source code.
-The arithmetic function of OSQPvectorf and OSQPmatrix are replaced with reloaded operators. 
-For example the following code shows how to define 2 vectors and compute a linear combination of them.
+Two new data type `vectorf` and `matrixf` are added to represent `OSQPVectorf` and `OSQPMatrix` in the OSQP source code.
+The arithmetic functions of OSQPvectorf and OSQPmatrix are replaced with reloaded operators. 
+For example, the following code shows how to define 2 vectors and compute a linear combination of them.
 
 ``` C
 float scalar_a, scalar_b;
 vectorf vec_x, vec_y, vec_z;
 
-vec_z = scalar_a * vec_x + scalar_b * vec_b;
+vec_z = scalar_a * vec_x + scalar_b * vec_y;
 ```
 
-The RSQP architecture has an instruction "axpby" for computing the linear combination of vectors.
-After compilation, an "axpby" instruction will be emitted for the above assignment statement. 
+The RSQP architecture has an instruction `axpby` for computing the linear combination of vectors.
+After compilation, an `axpby` instruction will be emitted for the above assignment statement. 
 
 ## Requirements
 pandas
@@ -48,7 +48,7 @@ Scan for repeated expressions of vector linear combination
 ### Vector Buffers Allocation
 Assign the variable and temp IDs to Vector Buffers. 
 There are two VBs in the RSQP architecture and each VB can store N vectors.
-The "axpby" instruction requires the two operands to be at different VBs.
+The `axpby` instruction requires the two operands to be at different VBs.
 Smart VB allocation can help reduce the movement of the same vector between 2 VBs.
 
 
