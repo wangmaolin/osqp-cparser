@@ -1,8 +1,6 @@
 import pandas as pd
 from pycparser import parse_file
 from pycparser import c_ast
-import sys
-sys.path.extend(['.', '..'])
 
 def get_Decl_info(node):
 	id_type_record =[node.name, node.type.type.names[0], node.coord]
